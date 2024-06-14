@@ -1,0 +1,13 @@
+#include <tunables/global>
+
+profile bad_profile flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  network inet,
+  file,
+
+  / rw,
+  /usr/bin/*,
+
+  capability,
+}
