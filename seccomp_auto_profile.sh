@@ -1,3 +1,18 @@
+# default usage should be like
+# ./profile -pod=test-pod -deploy=audit -logs=/var/log/seccomp-exception.log
+# ideally we want auto-generated profiles to be put in audit mode to confirm there's
+# nothing we've missed in the initial profile that needs to be in an 'enforced' profile
+#
+# if we ran in audit mode and had a log file to log extra-profiled syscalls to be logged to,
+# how would we surface and use this in a way that's useful to the user?
+# probably want some utility to push this extra-profile syscall log file to that condenses
+# this into the specific syscalls that would need adding into the custom profile, and then
+# a means to merge this in quickly
+#
+# beyond this - once a profile is deployed and in enforce mode, it would be useful to surface
+# attempts to use non-allowlisted syscalls? unsure of the feasability of this, especially
+# since we don't want strace continuously running on all pod container processes in the node
+
 pod_name=$1
 
 # step 1: get an array of container names within the specified pod
